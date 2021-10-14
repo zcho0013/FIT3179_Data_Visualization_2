@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&display=swap" rel="stylesheet"> 
+  
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  
+</head>
+
+<body>
+
+  <div class="page">
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>World Happiness Report</h1>
+        <div class="description">
+          <p>
+            The <b>World Happiness Report</b> is a landmark survey of the state of global happiness. It reviews the state of happiness in 
+            the world today and show how the new science of happiness explains personal and national variations in happiness. The report 
+            continues to gain global recognition as governments, organizations and civil society increasingly use happiness indicators 
+            to inform their policy-making decisions. In the reports, experts in fields including economics, psychology, survey analysis, 
+            and national statistics, describe how measurements of well-being can be used effectively to assess the progress of nations, 
+            and other topics.
+          </p>
+          <p>
+            The <b>focus of this visualization</b> is exploring the World Happiness Report from Kaggle in the year <b>2019</b>, which ranks 
+            <b>156 countries</b> by their happiness levels. The report primarily uses data from Gallup World Poll. The rankings of national 
+            happiness are based on a Cantril ladder survey. Nationally representative samples of respondents are asked to think of a ladder, 
+            with the <b>best possible life for them being a 10</b>, and the <b>worst possible life being a 0</b>. They are then asked to rate 
+            their own current lives on that scale.
+          </p>
+          <p>
+            First, let's take an <b>Overall Glance on the Happiness Score Around the World in the year 2019</b> before we dive deeper into our 
+            topic!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-4">
+        <div class="description description-left">
+          <h2>Overall Glance on the Happiness Score Around the World</h2>
+          <p>
+            This is an <b>Equal Earth map projection</b> that shows the happiness score around the world. Countries with lower happiness score
+            will have a lighter colour, while countries with higher happiness score have a darker colour.
+          </p>
+          <p>
+            We can see that most of the countries in <b>Europe and America</b> are overall happier than other countries in the world, and only 
+            a few countries in Asia & Pacific has compatible happiness score with them.
+          </p>
+        </div>
+      </div>
+
+      <div class="pure-u-3-4">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="description">
+          <p>
+            <i>Why some country’s happiness level is higher than others? What are the main factors that contribute in evaluating the happiness 
+            in each country?</i> We will now look at the six other factors that are included in the report, which are: 
+          </p>
+          <ul>
+            <li>
+              <b>Score:</b> A metric measured by asking the respondents a question: 
+              "How would you rate your happiness on a scale of 0 to 10 where 10 is the happiest?"
+            </li>
+            <li>
+              <b>Economy GDP:</b> A measure of a country's economic output that accounts for its number of people, which gives us insight 
+              into how well a country is doing economically
+            </li>
+            <li>
+              <b>Social Support:</b> A numeric variable which gives us insight in how much a country values friends and other people,
+              including family
+            </li>
+            <li>
+              <b>Life Expectancy:</b> The average number of years that a newborn can expect to live in "full health", in other words, not 
+              hampered by disabling illnesses or injuries
+            </li>
+            <li>
+              <b>Freedom:</b> A numeric variable that is based on how free an individual feels in the given country to make life choices, 
+              and to perform an action selected from at least two available options, unconstrained by external parties
+            </li>
+            <li>
+              <b>Generosity:</b> The quality of being kind and generous, which gives us insight in how generous the people are in the given country
+            </li>
+            <li>
+              <b>Trust in Government:</b> A numeric variable describing how much does the people in the given country trust their government, 
+              it is based on the Corruption Perceptions Index (CPI) that is an index published annually by Transparency International since 
+              1995 which ranks countries by their perceived levels of public sector corruption, as determined by expert assessments and 
+              opinion surveys
+            </li>
+          </ul>
+          <p>
+            These six factors each describes the extent to which these factors contribute in making life evaluations higher in each country 
+            than they are in <b>Dystopia</b>, a hypothetical country that has values equal to the <b>world’s lowest national averages</b> 
+            for each of the six factors. Let's see how are they related to each other and how they contribute to our main focus - the Happiness
+            Score of each country.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-3-5">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+
+      <div class="pure-u-2-5">
+        <div class="description description-right">
+          <h2>Correlation between these factors and Happiness Score</h2>
+          <p>
+            From the correlation plot, we can see that <b>Economy GDP, Life Expectancy, and Social Support</b> play the most significant role in 
+            contributing to happiness. Meanwhile, <b>Trust in Government and Generosity</b> have the lowest impact on the happiness score. 
+          </p>
+          <p>
+            <b>Freedom</b> also correlates fairly with happiness score, however, we can see that it correlates fairly with every factor as 
+            well, hence it does not really count as high impact to the happiness score in this case.
+          </p>
+          <p>
+            Another interesting point is that we can see that <b>Economy, Life Expectancy and Social Support</b> correlates well within each 
+            other too. 
+          </p>
+          <p>
+            <i>Does strong economy leads to healthier life and better social life?</i> Let's find out below!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-4">
+        <div class="description description-left">
+          <p>
+            From the regression line in both scatterplot, we can see that <i>the stronger the economy of a country, the better the social 
+            support as well as life expectancy.</i>
+          </p>
+          <p>
+            This result is expected as thinking logically, <i>strong economy</i> also implies people of the country has better access to 
+            housing, education, health services and other items which lead to improved health, lower rates of mortality and 
+            <i>higher life expectancy</i>.
+          </p>
+          <p>
+            Besides, economy definitely is also an important foundation for a better social network, as people has extra time and resource 
+            to socialize more.
+          </p>
+        </div>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div id="vis4" class="vis-container"></div>
+      </div>
+    </div>
+
+    <div class="description">
+      <p>
+        <i>How can these factors affect the happiness score of countries around the world?</i> Let us first find out the average value of these
+        factors across different regions including <i>Africa, Arab States, Asia & Pacific, Europe, Middle East, North America and South/Latin 
+        America</i>.
+      </p>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-3-5">
+        <div id="vis5" class="vis-container"></div>
+      </div>
+
+      <div class="pure-u-2-5">
+        <div class="description description-right">
+          <h2>Average value of each factor for each region</h2>
+          <p>
+            This heatmap shows the average value of each factor regionally. Even though the report says that these factor values has no impact
+            on the happiness score reported for each country, but they do explain why some countries rank higher than others.
+          </p>
+          <p>
+            Remember that just now we had an observed from the correlation plot above that countries with higher Economy GDP, Social Support
+            and Life Expectancy will theoretically have a higher happiness score? 
+          </p>
+          <p>
+            <i>We will try to prove that our observation by observing the relationship between this heatmap with the box plot below, 
+              showing the distribution of happiness score across different regions.</i>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-3-5">
+        <div id="vis6" class="vis-container"></div>
+      </div>
+
+      <div class="pure-u-2-5">
+        <div class="description description-right">
+          <h2>Distribution of Happiness Score across Different Regions</h2>
+          <p>
+            By observing this box plot's result and the heatmap, it seems that countries in <i>Europe and America</i> are overall happier, due to their
+            stronger economy, better social support as well as life expectancy than other regions. Countries in <i>Asia & Pasific</i> and 
+            <i>Middle East</i> are slightly less happier as their life expectancy was slightly lower.
+          </p>
+          <p>
+            <i>Now, try to identify why countries in Africa and Arab States are the least happiest country? I'm sure you can figure it out now
+              by noticing the relationship between this two plots!
+            </i>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="description">
+      <p>
+        Since we have already discussed the relationships between the different factors and happiness score, how about we try to visualize <i>the 
+        relative ranking of each country by these factors</i>?
+      </p>
+      <h2>Relative Ranking of Countries by Happiness Score and Factors</h2>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis7" class="vis-container"></div>
+      </div>
+    
+      <div class="pure-u-1-1">
+        <div class="description">
+          <p>
+            From the parallel coordinate plot above, we can see that most of the top 25% happiest country around the world has high <b>Economy
+            GDP</b>, <b>Social Support</b> as well as <b>Life Expectancy</b>. This further proves that our findings throughout this visualization 
+            was quite accurate and persuasive.
+          </p>
+          <p>
+            However, we can also observe that there are some outliers in the plot, notice that in the <b>Generosity</b> column, <i>Indonesia</i>
+            and <i>Myanmar</i> has outperformed every other countries in the world, but their happiness score ranking is not even included in the
+            top 50% happiest country.
+          </p>
+          <p>
+            <i>Why is this the case? Is it caused by any of the three main factors that we observed contributing most to the happiness score?</i> 
+            Yes! When we hover across the two points at <b>Generosity</b> column, we can see that even though Myanmar and Indonesia being 
+            exceptionally generous here, but low GDP and low-ish life expectancy hinder its claim to fame in terms of happiness.
+          </p>
+          <p>
+            From the observations that we have so far collected, we can conclude that even though these factors might not have direct impact on
+            each country's happiness score, but they do explain why some of the countries rank higher than other countries, especially <b>Economy GDP</b>,
+            <b>Social Support</b> and <b>Life Expectancy</b>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class = "pure-u-1-1 author">
+        <p>
+          Designed and Developed by <b>Chong Zhen Tao</b> | Data from <b>Kaggle</b> by <b>Development Solutions Network</b>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    var spec1 = "js/map_happiness_score.json";
+    var spec2 = "js/correlation_heatmap.json";
+    var spec3 = "js/economy_social_scatterplot.json";
+    var spec4 = "js/economy_lifeexpectancy_scatterplot.json";
+    var spec5 = "js/average_value_heatmap.json";
+    var spec6 = "js/boxplot.json";
+    var spec7 = "js/parallel_coordinate_plot.json";
+
+    vegaEmbed('#vis1', spec1).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis2', spec2).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', spec3).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', spec4).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', spec5).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis6', spec6).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis7', spec7).then(function(result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+  </script>
+
+</body>
+
+</html>
