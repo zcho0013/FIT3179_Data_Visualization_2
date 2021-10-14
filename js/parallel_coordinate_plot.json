@@ -1,0 +1,316 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1025,
+  "height": 600,
+  "background": "#E3FDCD",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zcho0013/FIT3179_Data_Visualization_2/main/data/jsondata.json"
+  },
+  "transform": [
+    {
+      "filter": "datum['Score']"
+    },
+    {
+      "window": [
+        {
+          "op": "count",
+          "as": "index"
+        }
+      ]
+    },
+    {
+      "fold": [
+        "Score",
+        "Economy GDP",
+        "Social Support",
+        "Life Expectancy",
+        "Freedom",
+        "Generosity",
+        "Trust In Government"
+      ]
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "min",
+          "field": "value",
+          "as": "min"
+        },
+        {
+          "op": "max",
+          "field": "value",
+          "as": "max"
+        }
+      ],
+      "groupby": [
+        "key"
+      ]
+    },
+    {
+      "calculate": "(datum.value - datum.min) / (datum.max - datum.min)",
+      "as": "norm_val"
+    },
+    {
+      "calculate": "(datum.min + datum.max) / 2",
+      "as": "mid"
+    },
+    {
+      "calculate": "datum.Rank / 178 * 100",
+      "as": "percentile"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#ccc"
+      },
+      "encoding": {
+        "detail": {
+          "aggregate": "count"
+        },
+        "x": {
+          "field": "key",
+          "sort": [
+            "Score",
+            "Economy GDP",
+            "Social Support",
+            "Life Expectancy",
+            "Freedom",
+            "Generosity",
+            "Trust In Government"
+          ]
+        }
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "color": {
+          "type": "quantitative",
+          "field": "percentile",
+          "scale": {
+            "type": "quantile",
+            "range": [
+              "#e41a1c",
+              "#377eb8",
+              "#4daf4a",
+              "#984ea3"
+            ]
+          }
+        },
+        "detail": {
+          "type": "nominal",
+          "field": "index"
+        },
+        "opacity": {
+          "value": 0.3
+        },
+        "x": {
+          "type": "nominal",
+          "field": "key",
+          "sort": [
+            "Score",
+            "Economy GDP",
+            "Social Support",
+            "Life Expectancy",
+            "Freedom",
+            "Generosity",
+            "Trust In Government"
+          ]
+        },
+        "y": {
+          "type": "quantitative",
+          "field": "norm_val",
+          "axis": null
+        },
+        "tooltip": [
+          {
+            "type": "nominal",
+            "field": "Country"
+          },
+          {
+            "type": "quantitative",
+            "field": "Rank"
+          },
+          {
+            "type": "quantitative",
+            "field": "Score",
+            "title": "Happiness Score"
+          },
+          {
+            "type": "quantitative",
+            "field": "Economy GDP"
+          },
+          {
+            "type": "quantitative",
+            "field": "Social Support"
+          },
+          {
+            "type": "quantitative",
+            "field": "Life Expectancy"
+          },
+          {
+            "type": "quantitative",
+            "field": "Freedom"
+          },
+          {
+            "type": "quantitative",
+            "field": "Generosity"
+          },
+          {
+            "type": "quantitative",
+            "field": "Trust In Government"
+          }
+        ]
+      }
+    },
+    {
+      "encoding": {
+        "x": {
+          "type": "nominal",
+          "field": "key",
+          "sort": [
+            "Score",
+            "Economy GDP",
+            "Social Support",
+            "Life Expectancy",
+            "Freedom",
+            "Generosity",
+            "Trust In Government"
+          ]
+        },
+        "y": {
+          "value": 0
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "style": "label"
+          },
+          "encoding": {
+            "text": {
+              "aggregate": "max",
+              "field": "max"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "tick",
+            "style": "tick",
+            "size": 8,
+            "color": "#ccc"
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "x": {
+          "type": "nominal",
+          "field": "key",
+          "sort": [
+            "Score",
+            "Economy GDP",
+            "Social Support",
+            "Life Expectancy",
+            "Freedom",
+            "Generosity",
+            "Trust In Government"
+          ]
+        },
+        "y": {
+          "value": 300
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "style": "label"
+          },
+          "encoding": {
+            "text": {
+              "aggregate": "min",
+              "field": "mid"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "tick",
+            "style": "tick",
+            "size": 8,
+            "color": "#ccc"
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "x": {
+          "type": "nominal",
+          "field": "key",
+          "sort": [
+            "Score",
+            "Economy GDP",
+            "Social Support",
+            "Life Expectancy",
+            "Freedom",
+            "Generosity",
+            "Trust In Government"
+          ]
+        },
+        "y": {
+          "value": 600
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "style": "label"
+          },
+          "encoding": {
+            "text": {
+              "aggregate": "min",
+              "field": "min"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "tick",
+            "style": "tick",
+            "size": 8,
+            "color": "#ccc"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axisX": {
+      "domain": false,
+      "labelAngle": 0,
+      "tickColor": "#ccc",
+      "title": null
+    },
+    "view": {
+      "stroke": null
+    },
+    "style": {
+      "label": {
+        "baseline": "middle",
+        "align": "right",
+        "dx": -5
+      },
+      "tick": {
+        "orient": "horizontal"
+      }
+    }
+  }
+}

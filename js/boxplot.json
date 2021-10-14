@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 300,
+  "background": "#E3FDCD",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zcho0013/FIT3179_Data_Visualization_2/main/data/2019.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Region != 'NULL'"
+    }
+  ],
+  "mark": {
+    "type": "boxplot",
+    "extent": "min-max"
+  },
+  "encoding": {
+    "x": {
+      "field": "Region",
+      "type": "nominal"
+    },
+    "color": {
+      "field": "Region",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Africa",
+          "Arab States",
+          "Asia & Pacific",
+          "Europe",
+          "Middle East",
+          "North America",
+          "South/Latin America"
+        ],
+        "range": [
+          "#e41a1c",
+          "#984ea3",
+          "#FF8C00",
+          "#377eb8",
+          "#87CEFA",
+          "#a65628",
+          "#3CB371"
+        ]
+      },
+      "legend": null
+    },
+    "y": {
+      "field": "Score",
+      "type": "quantitative",
+      "scale": {
+        "zero": false
+      },
+      "title": "Happiness Score"
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "tickBand": "extent"
+    }
+  }
+}

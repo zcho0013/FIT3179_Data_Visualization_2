@@ -1,0 +1,117 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 480,
+    "height": 480,
+    "background": "#E3FDCD",
+    "data": {
+      "values": [
+        {"Region": "Europe", "Factor": "Economy GDP", "Avg": 1.207},
+        {"Region": "Europe", "Factor": "Social Support", "Avg": 1.398},
+        {"Region": "Europe", "Factor": "Life Expectancy", "Avg": 0.919},
+        {"Region": "Europe", "Factor": "Freedom", "Avg": 0.398},
+        {"Region": "Europe", "Factor": "Generosity", "Avg": 0.17},
+        {"Region": "Europe", "Factor": "Trust In Government", "Avg": 0.127},
+
+        {"Region": "Asia & Pacific", "Factor": "Economy GDP", "Avg": 0.936},
+        {"Region": "Asia & Pacific", "Factor": "Social Support", "Avg": 1.25},
+        {"Region": "Asia & Pacific", "Factor": "Life Expectancy", "Avg": 0.772},
+        {"Region": "Asia & Pacific", "Factor": "Freedom", "Avg": 0.472},
+        {"Region": "Asia & Pacific", "Factor": "Generosity", "Avg": 0.245},
+        {"Region": "Asia & Pacific", "Factor": "Trust In Government", "Avg": 0.129},
+
+        {"Region": "North America", "Factor": "Economy GDP", "Avg": 1.399},
+        {"Region": "North America", "Factor": "Social Support", "Avg": 1.481},
+        {"Region": "North America", "Factor": "Life Expectancy", "Avg": 0.957},
+        {"Region": "North America", "Factor": "Freedom", "Avg": 0.519},
+        {"Region": "North America", "Factor": "Generosity", "Avg": 0.283},
+        {"Region": "North America", "Factor": "Trust In Government", "Avg": 0.218},
+
+        {"Region": "South/Latin America", "Factor": "Economy GDP", "Avg": 0.924},
+        {"Region": "South/Latin America", "Factor": "Social Support", "Avg": 1.339},
+        {"Region": "South/Latin America", "Factor": "Life Expectancy", "Avg": 0.812},
+        {"Region": "South/Latin America", "Factor": "Freedom", "Avg": 0.441},
+        {"Region": "South/Latin America", "Factor": "Generosity", "Avg": 0.145},
+        {"Region": "South/Latin America", "Factor": "Trust In Government", "Avg": 0.072},
+
+        {"Region": "Arab States", "Factor": "Economy GDP", "Avg": 0.698},
+        {"Region": "Arab States", "Factor": "Social Support", "Avg": 1.022},
+        {"Region": "Arab States", "Factor": "Life Expectancy", "Avg": 0.648},
+        {"Region": "Arab States", "Factor": "Freedom", "Avg": 0.275},
+        {"Region": "Arab States", "Factor": "Generosity", "Avg": 0.144},
+        {"Region": "Arab States", "Factor": "Trust In Government", "Avg": 0.107},
+
+        {"Region": "Africa", "Factor": "Economy GDP", "Avg": 0.457},
+        {"Region": "Africa", "Factor": "Social Support", "Avg": 0.92},
+        {"Region": "Africa", "Factor": "Life Expectancy", "Avg": 0.406},
+        {"Region": "Africa", "Factor": "Freedom", "Avg": 0.344},
+        {"Region": "Africa", "Factor": "Generosity", "Avg": 0.186},
+        {"Region": "Africa", "Factor": "Trust In Government", "Avg": 0.09},
+
+        {"Region": "Middle East", "Factor": "Economy GDP", "Avg": 1.077},
+        {"Region": "Middle East", "Factor": "Social Support", "Avg": 1.121},
+        {"Region": "Middle East", "Factor": "Life Expectancy", "Avg": 0.709},
+        {"Region": "Middle East", "Factor": "Freedom", "Avg": 0.337},
+        {"Region": "Middle East", "Factor": "Generosity", "Avg": 0.171},
+        {"Region": "Middle East", "Factor": "Trust In Government", "Avg": 0.116}
+      ]
+    },
+    "encoding": {
+      "x": {
+        "field": "Region",
+        "type": "nominal",
+        "title": null
+      },
+      "y": {
+        "field": "Factor",
+        "type": "nominal",
+        "title": null,
+        "sort": [
+          "Economy GDP",
+          "Social Support",
+          "Life Expectancy",
+          "Freedom",
+          "Generosity",
+          "Trust In Government"
+        ]
+      }
+    },
+    "layer": [
+      {
+        "mark": "rect",
+        "encoding": {
+          "color": {
+            "field": "Avg",
+            "type": "quantitative",
+            "scale": {
+              "scheme": "purpleblue"
+            }
+          }
+        }
+      },
+      {
+        "mark": "text",
+        "encoding": {
+          "text": {
+            "field": "Avg",
+            "type": "quantitative"
+          },
+          "color": {
+            "condition": {
+              "test": "datum['Avg'] > 0.8",
+              "value": "white"
+            }
+          }
+        }
+      }
+    ],
+    "config": {
+      "view": {
+        "stroke": "transparent"
+      },
+      "axis": {
+        "grid": true,
+        "tickBand": "extent"
+      }
+    }
+  }
+  

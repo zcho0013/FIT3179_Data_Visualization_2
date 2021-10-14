@@ -1,0 +1,174 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 305,
+  "height": 400,
+  "background": "#E3FDCD",
+  "data": {
+    "url": "https://raw.githubusercontent.com/zcho0013/FIT3179_Data_Visualization_2/main/data/2019.csv"
+  },
+  "title": "Economy GDP with Life Expectancy",
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Economy GDP",
+          "type": "quantitative",
+          "title": "Economy"
+        },
+        "y": {
+          "field": "Life Expectancy",
+          "type": "quantitative",
+          "title": "Life Expectancy"
+        },
+        "color": {
+          "field": "Region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Africa",
+              "Arab States",
+              "Asia & Pacific",
+              "Europe",
+              "Middle East",
+              "North America",
+              "South/Latin America"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#FF8C00",
+              "#377eb8",
+              "#87CEFA",
+              "#a65628",
+              "#3CB371"
+            ]
+          }
+        },
+        "size": {
+          "value": 60
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#B22222"
+      },
+      "transform": [
+        {
+          "regression": "Economy GDP",
+          "on": "Life Expectancy"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Economy GDP",
+          "type": "quantitative",
+          "title": "Economy"
+        },
+        "y": {
+          "field": "Life Expectancy",
+          "type": "quantitative",
+          "title": "Life Expectancy"
+        }
+      }
+    }
+  ],
+  "params": [
+    {
+      "name": "Region_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Africa",
+          "Arab States",
+          "Asia & Pacific",
+          "Europe",
+          "Middle East",
+          "North America",
+          "South/Latin America"
+        ],
+        "labels": [
+          "Show All",
+          "Africa",
+          "Arab States",
+          "Asia & Pacific",
+          "Europe",
+          "Middle East",
+          "North America",
+          "South/Latin America"
+        ],
+        "name": "Region Selection: "
+      }
+    },
+    {
+      "name": "Rank_Selection",
+      "value": 120,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 156,
+        "step": 1,
+        "name": "Rank (Inclusive): "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Region_Selection == null || Region_Selection == datum.Region"
+    },
+    {
+      "filter": "datum.Rank <= Rank_Selection"
+    }
+  ],
+  "encoding": {
+    "tooltip": [
+      {
+        "field": "Country",
+        "type": "nominal"
+      },
+      {
+        "field": "Region",
+        "type": "nominal"
+      },
+      {
+        "field": "Rank",
+        "type": "quantitative"
+      },
+      {
+        "field": "Score",
+        "type": "quantitative",
+        "title": "Happiness Score"
+      },
+      {
+        "field": "Economy GDP",
+        "type": "quantitative"
+      },
+      {
+        "field": "Social Support",
+        "type": "quantitative"
+      },
+      {
+        "field": "Life Expectancy",
+        "type": "quantitative"
+      },
+      {
+        "field": "Freedom",
+        "type": "quantitative"
+      },
+      {
+        "field": "Generosity",
+        "type": "quantitative"
+      },
+      {
+        "field": "Trust In Government",
+        "type": "quantitative"
+      }
+    ]
+  }
+}

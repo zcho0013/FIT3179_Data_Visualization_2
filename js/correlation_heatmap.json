@@ -1,0 +1,136 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 480,
+    "height": 480,
+    "background": "#E3FDCD",
+    "data": {
+        "values": [
+            {"factor1": "Score", "factor2": "Score", "correlation": 1.000000},
+            {"factor1": "Score", "factor2": "Economy GDP", "correlation": 0.793883},
+            {"factor1": "Score", "factor2": "Social Support", "correlation": 0.777058},
+            {"factor1": "Score", "factor2": "Life Expectancy", "correlation": 0.779883},
+            {"factor1": "Score", "factor2": "Freedom", "correlation": 0.566742},
+            {"factor1": "Score", "factor2": "Generosity", "correlation": 0.075824},
+            {"factor1": "Score", "factor2": "Trust In Government", "correlation": 0.385613},
+
+            {"factor1": "Economy GDP", "factor2": "Score", "correlation": 0.793883},
+            {"factor1": "Economy GDP", "factor2": "Economy GDP", "correlation": 1.000000},
+            {"factor1": "Economy GDP", "factor2": "Social Support", "correlation": 0.754906},
+            {"factor1": "Economy GDP", "factor2": "Life Expectancy", "correlation": 0.835462},
+            {"factor1": "Economy GDP", "factor2": "Freedom", "correlation": 0.379079},
+            {"factor1": "Economy GDP", "factor2": "Generosity", "correlation": -0.079662},
+            {"factor1": "Economy GDP", "factor2": "Trust In Government", "correlation": 0.298920},
+
+            {"factor1": "Social Support", "factor2": "Score", "correlation": 0.777058},
+            {"factor1": "Social Support", "factor2": "Economy GDP", "correlation": 0.754906},
+            {"factor1": "Social Support", "factor2": "Social Support", "correlation": 1.000000},
+            {"factor1": "Social Support", "factor2": "Life Expectancy", "correlation": 0.719009},
+            {"factor1": "Social Support", "factor2": "Freedom", "correlation": 0.447333},
+            {"factor1": "Social Support", "factor2": "Generosity", "correlation": -0.048126},
+            {"factor1": "Social Support", "factor2": "Trust In Government", "correlation": 0.181899},
+
+            {"factor1": "Life Expectancy", "factor2": "Score", "correlation": 0.779883},
+            {"factor1": "Life Expectancy", "factor2": "Economy GDP", "correlation": 0.835462},
+            {"factor1": "Life Expectancy", "factor2": "Social Support", "correlation": 0.719009},
+            {"factor1": "Life Expectancy", "factor2": "Life Expectancy", "correlation": 1.000000},
+            {"factor1": "Life Expectancy", "factor2": "Freedom", "correlation": 0.390395},
+            {"factor1": "Life Expectancy", "factor2": "Generosity", "correlation": -0.029511},
+            {"factor1": "Life Expectancy", "factor2": "Trust In Government", "correlation": 0.295283},
+
+            {"factor1": "Freedom", "factor2": "Score", "correlation": 0.566742},
+            {"factor1": "Freedom", "factor2": "Economy GDP", "correlation": 0.379079},
+            {"factor1": "Freedom", "factor2": "Social Support", "correlation": 0.447333},
+            {"factor1": "Freedom", "factor2": "Life Expectancy", "correlation": 0.390395},
+            {"factor1": "Freedom", "factor2": "Freedom", "correlation": 1.000000},
+            {"factor1": "Freedom", "factor2": "Generosity", "correlation": 0.269742},
+            {"factor1": "Freedom", "factor2": "Trust In Government", "correlation": 0.438843},
+
+            {"factor1": "Generosity", "factor2": "Score", "correlation": 0.075824},
+            {"factor1": "Generosity", "factor2": "Economy GDP", "correlation": -0.079662},
+            {"factor1": "Generosity", "factor2": "Social Support", "correlation": -0.048126},
+            {"factor1": "Generosity", "factor2": "Life Expectancy", "correlation": -0.029511},
+            {"factor1": "Generosity", "factor2": "Freedom", "correlation": 0.269742},
+            {"factor1": "Generosity", "factor2": "Generosity", "correlation": 1.000000},
+            {"factor1": "Generosity", "factor2": "Trust In Government", "correlation": 0.326538},
+
+            {"factor1": "Trust In Government", "factor2": "Score", "correlation": 0.385613},
+            {"factor1": "Trust In Government", "factor2": "Economy GDP", "correlation": 0.298920},
+            {"factor1": "Trust In Government", "factor2": "Social Support", "correlation": 0.181899},
+            {"factor1": "Trust In Government", "factor2": "Life Expectancy", "correlation": 0.295283},
+            {"factor1": "Trust In Government", "factor2": "Freedom", "correlation": 0.438843},
+            {"factor1": "Trust In Government", "factor2": "Generosity", "correlation": 0.326538},
+            {"factor1": "Trust In Government", "factor2": "Trust In Government", "correlation": 1.000000}
+          ]
+    },
+    "encoding": {
+      "x": {
+        "field": "factor1",
+        "title": null,
+        "type": "nominal",
+        "sort": [
+          "Score",
+          "Economy GDP",
+          "Social Support",
+          "Life Expectancy",
+          "Freedom",
+          "Generosity",
+          "Trust In Government"
+        ]
+      },
+      "y": {
+        "field": "factor2",
+        "title": null,
+        "type": "nominal",
+        "sort": [
+          "Score",
+          "Economy GDP",
+          "Social Support",
+          "Life Expectancy",
+          "Freedom",
+          "Generosity",
+          "Trust In Government"
+        ]
+      }
+    },
+    "layer": [
+      {
+        "mark": "rect",
+        "encoding": {
+          "color": {
+            "field": "correlation",
+            "type": "quantitative",
+            "scale": {
+              "scheme": "purpleblue"
+            },
+            "legend": {
+              "title": null
+            }
+          }
+        }
+      },
+      {
+        "mark": "text",
+        "encoding": {
+          "text": {
+            "field": "correlation",
+            "type": "quantitative"
+          },
+          "color": {
+            "condition": {
+              "test": "datum['correlation'] > 0.6",
+              "value": "white"
+            }
+          }
+        }
+      }
+    ],
+    "config": {
+      "view": {
+        "stroke": "transparent"
+      },
+      "axis": {
+        "grid": true,
+        "tickBand": "extent"
+      }
+    }
+  }
