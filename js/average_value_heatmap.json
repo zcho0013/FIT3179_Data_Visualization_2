@@ -83,7 +83,7 @@
             "field": "Avg",
             "type": "quantitative",
             "scale": {
-              "scheme": "purpleblue"
+              "scheme": "reds"
             }
           }
         }

@@ -49,6 +49,7 @@
           },
           "legend": null
         },
+        "opacity": {"value": 0.6},
         "size": {
           "value": 60
         }

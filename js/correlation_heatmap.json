@@ -100,7 +100,7 @@
             "field": "correlation",
             "type": "quantitative",
             "scale": {
-              "scheme": "purpleblue"
+              "scheme": "purples"
             },
             "legend": {
               "title": null

@@ -1,66 +1,83 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 770,
-  "height": 510,
+  "width": 700,
+  "height": 350,
   "background": "#E3FDCD",
   "data": {
-    "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-    "format": {
-      "type": "topojson",
-      "feature": "ne_110m_admin_0_countries"
-    }
+    "url": "https://raw.githubusercontent.com/zcho0013/FIT3179_Data_Visualization_2/main/data/2019.csv"
   },
-  "transform": [
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
     {
-      "lookup": "properties.NAME",
-      "from": {
-        "data": {
-          "url": "https://raw.githubusercontent.com/zcho0013/FIT3179_Data_Visualization_2/main/data/2019.csv"
+      "data": {
+        "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {
+          "calculate": "'Happiness Score not recorded in ' + datum.properties.NAME",
+          "as": "none"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgrey",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {"tooltip": {"field": "none"}}
+    },{
+      "transform": [
+        {
+          "lookup": "Country",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+              "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+            },
+            "key": "properties.NAME"
+          },
+          "as": "location"
+        }
+      ],
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "shape": {"field": "location", "type": "geojson"},
+        "color": {
+          "field": "Score",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "orangered"
+          }
         },
-        "key": "Country",
-        "fields": [
-          "Rank",
-          "Region",
-          "Score"
+        "tooltip": [
+          {
+            "field": "properties.NAME",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "field": "Score",
+            "type": "quantitative",
+            "title": "Happiness Score"
+          },
+          {
+            "field": "Region",
+            "type": "nominal"
+          },
+          {
+            "field": "Rank",
+            "type": "nominal"
+          }
         ]
       }
     }
   ],
-  "projection": {
-    "type": "equalEarth"
-  },
-  "mark": {
-    "type": "geoshape"
-  },
-  "encoding": {
-    "color": {
-      "field": "Score",
-      "type": "quantitative",
-      "scale": {
-        "scheme": "orangered"
-      }
-    },
-    "tooltip": [
-      {
-        "field": "properties.NAME",
-        "type": "nominal",
-        "title": "Country"
-      },
-      {
-        "field": "Score",
-        "type": "quantitative",
-        "title": "Happiness Score"
-      },
-      {
-        "field": "Region",
-        "type": "nominal"
-      },
-      {
-        "field": "Rank",
-        "type": "nominal"
-      }
-    ]
-  },
+  
   "config": {
     "style": {
       "cell": {
