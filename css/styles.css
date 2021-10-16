@@ -1,6 +1,5 @@
 *{
     font-family: 'Open Sans', sans-serif;
-    color: black;
 }
 h1{
     text-align: center;
@@ -48,7 +47,7 @@ li{
     padding-left: 30px;
 }
 .pure-g{
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 .author p{
     padding-top: 50px;
