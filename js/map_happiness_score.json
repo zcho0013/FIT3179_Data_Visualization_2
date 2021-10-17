@@ -56,7 +56,7 @@
         },
         "tooltip": [
           {
-            "field": "properties.NAME",
+            "field": "Country",
             "type": "nominal",
             "title": "Country"
           },
